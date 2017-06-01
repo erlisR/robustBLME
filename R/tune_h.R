@@ -72,7 +72,7 @@ tune.h <- function(formula, data, ..., n.samp = 1e+5, n.sim.HJ = 500, acc.rate, 
   Xn = obj$X
   # p = ncol(Xn)
   n = nrow(Xn)
-  n_ind = length(levels(obj$flist$id))
+  n_ind = length(levels(obj$flist[[1]]))
   m_i = n/n_ind
 
   Xnt = t(Xn)

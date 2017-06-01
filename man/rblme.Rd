@@ -18,17 +18,36 @@ rblme(nabc, h.obj,
 \item{n.cores}{the number of cores for parallel computation.}
 }
 \value{
-list
+as list with elements \code{abc} and \code{effi}. The latter is the actual acceptance rate of the ABC-MCMC algorithm whereas the former gives the posterior samples in a matrix of \eqn{(q + c) \times nabc}, where \eqn{q} is the number of fixed effects, i.e. the columns of the design matrix and \eqn{c = 2} is the number of variance components. Hence the first \eqn{q} rows of the matrix abc give the posterior samples of the fixed effects and the last two components give the posterior samples for the variance components.
 }
 \description{
 This is the main function of the package which implements the method of Ruli et al. (2017). It fits robust Bayesian LMMs to data, via robust REML estimating functions. The robust estimating functions are those proposed by Richardson & Welsh (1995), which are robust versions of restricted maximum likelihood (REML) estimating equations. An ABC-MCMC algorithm is used and the data are summarised through a rescaled version of the aforementioned estimating functions. See Ruli et al. (2017) for the details of the method. The current version (0.1.2) supports only models with a single random effects. Extensions to more general settings will be provided in the future versions of the package.
 }
 \examples{
-x <- 1:3
-y <- x^2
 
-\dontrun{
-}
+## The following example is meant only to enhance function documentation.
+## For realistic applications probably you'll need to take a larger sample.
+data(ergoStool)
+
+require(lme4)
+fm1 <- lmer(effort~Type + (1| Subject), data = ergoStool)
+
+## tune h to get 0.8\% acceptance
+hopt <- tune.h(effort~Type + (1|Subject), data = ergoStool,
+               acc.rate = 0.008, n.sim.HJ = 500, grid.h = seq(0.3, 0.7, len = 10),
+               prior = list(beta.sd = 10, s2.scale = 5), n.cores = 1)
+
+## draw posterior samples with hopt.
+abc.tmp <- rblme(nabc = 1e+5, h.obj = hopt,
+                 n.cores = 1)
+# process ABC samples
+abc.sim <- t(abc.tmp$abc)
+abc.sim[,c(5,6)] <- exp(abc.sim[,c(5,6)])
+# ABC posterior
+colMeans(abc.sim)
+# REML estimates
+summary(fm1)
+
 }
 \references{
 Ruli E., Sartori N. & Ventura L. (2017)
