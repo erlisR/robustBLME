@@ -1,0 +1,6 @@
+emp_FSBT                Full Significance Bayesian Testing
+emp_hpd                 Empirical Highest Posterior Density Interval
+rblme                   Fits robust Bayesian linear mixed-effects
+                        models (BLMM) to data via robust REML
+                        estimating functions.
+tune.h                  Tune ABC distance bandwidth
