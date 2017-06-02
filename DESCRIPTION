@@ -3,16 +3,21 @@ Type: Package
 Title: Robust Bayesian Linear Mixed-Effects Models using ABC
 Version: 0.1.2
 Date: 2017-06-01
-Authors@R: person("Erlis", "Ruli", email = "erlisr@yahoo.it", role = c("aut", "cre"))
+Maintainer: Erlis Ruli <erlisr@yahoo.it>
+Authors@R: c(
+       person("Erlis", "Ruli", email = "erlisr@yahoo.it", role = c("aut", "cre")),
+       person("Nicola", "Sartori", role = "aut"),
+       person("Laura", "Ventura", role = "aut"))
+Description: Bayesian robust fitting of linear mixed effects models though weighted likelihood equations and approximate Bayesian computation.
 Depends:
     R (>= 3.0.0),
     lme4 (>= 1.1.12)
 Maintainer: Erlis Ruli <erlisr@yahoo.it> 
-Description: Bayesian robust fitting of linear mixed effects models though weighted likelihood equations and approximate Bayesian computation.
 Suggests:
     devtools
 License: GPL-2
 URL: https://github.com/erlisR/robustBLME
+BugReports: https://github.com/erlisR/robustBLME/issues
 LazyData: TRUE
 Imports:
     Rcpp (>= 0.12.1),

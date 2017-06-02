@@ -1,10 +1,11 @@
 ##' @title Empirical Highest Posterior Density Interval
-##' @description Computes empirical Highest Posterior Density (HPD) interval from a posterior sample. Works only for scalar marginal posteriors.
+##' @description Computes the Highest Posterior Density (HPD) interval from a posterior sample. Works only for scalar marginal posteriors.
 ##' @usage hpd(x, prob = 0.95)
 ##'
-##' @param x a univariata or marginal posterior sample.
-##' @param prob the required posterior probability content.
+##' @param x a univariate or a posterior sample for a scalar parameter.
+##' @param prob posterior probability content.
 ##'
+##' @return vector of two doubles.
 ##' @export
 hpd <- function(x, prob = 0.95){
   conf <- min(prob, 1-prob)

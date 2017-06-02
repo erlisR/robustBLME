@@ -1,12 +1,17 @@
 ##' @title Full Significance Bayesian Testing
 ##' @description Performs Full Significance Bayesian Testing (FSBT) for univariate sharp
-##' null hypothesis based on a posterior sample. The marginal posterior density is obtained by kernel density estimation from the posterior sample provided through the \code{sample} argument.
+##' null hypothesis based on a posterior sample. The marginal posterior density is obtained by kernel density estimation from \code{sim.sample}.
 ##' @usage kdeFSBT(H0, sim.sample)
 ##'
-##' @param H0 The value under the null hypothesis.
-##' @param sim.sample A monte Carlo sample from the marginal posterior distribution.
+##' @param H0 a scalar value under the null hypothesis.
+##' @param sim.sample a sample from the marginal posterior distribution.
 ##'
 ##' @return double
+##'
+##' @examples
+##'
+##' x <-  rnorm(1000, 0, 1)
+##' kdeFSBT(-2, x)
 ##'
 ##' @references
 ##' Pereira, C. A. d. B., Stern, J. M. and Wechsler, S. (2008) Can a significance test be genuinely Bayesian? \emph{Baysian Analysis} \bold{3}, 79-100.

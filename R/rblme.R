@@ -11,19 +11,19 @@
 ##' @importFrom parallel mclapply
 ##' @importFrom lme4 lmer VarCorr getME
 ##' @importFrom stats getCall
-##' @title Fits robust Bayesian linear mixed-effects models (BLMM) to data via robust REML estimating functions.
+##' @title Fits robust Bayesian Linear Mixed-effects Models (LMM) to data via robust REML estimating functions.
 ##'
-##' @description This is the main function of the package which implements the method of Ruli et al. (2017). It fits robust Bayesian LMMs to data, via robust REML estimating functions. The robust estimating functions are those proposed by Richardson & Welsh (1995), which are robust versions of restricted maximum likelihood (REML) estimating equations. An ABC-MCMC algorithm is used and the data are summarised through a rescaled version of the aforementioned estimating functions. See Ruli et al. (2017) for the details of the method. The current version (0.1.2) supports only models with a single random effects. Extensions to more general settings will be provided in the future versions of the package.
+##' @description This function fits robust Bayesian LMMs to data via robust REML estimating functions. The latters are those proposed by Richardson & Welsh (1995), which are robustified versions of restricted maximum likelihood (REML) estimating equations. Posterior sampling is done with an ABC-MCMC algorithm, where the data are summarised through a rescaled version of the aforementioned estimating functions; see Ruli et al. (2017) for the properties and details of the method. The current package version (0.1.2) supports only models with a single random effects. Extensions to more general settings will be provided in the future versions of the package.
 ##'
-##' @usage rblme(nabc, h.obj,
-##'         chain.control = list(trace.init = NULL, thin.by = NULL),
+##' @usage rblme(nabc, h.obj, chain.control = list(trace.init = NULL, thin.by = NULL),
 ##'         n.cores = 1)
-##' @param nabc the number of posterior samples to be drawn.
-##' @param h.obj a list of objects as returned by the \code{tune.h} function.
-##' @param chain.control parameters for tracing and thinning the chain.
-##' @param n.cores the number of cores for parallel computation.
+##' @param nabc number of posterior samples.
+##' @param h.obj list of objects as returned by the \code{\link[robustBLME]{tune.h}} function. Hence \code{tune.h} must be called first.
+##' @param chain.control parameters that control the tracing and the thinning of the chain(s).
+##' @param n.cores number of cores for parallel computation. For \code{n.cores}>2, \code{n.cores} chains are run each on a different core with using the same parameters but with a different random seed.
 ##'
-##' @return as list with elements \code{abc} and \code{effi}. The latter is the actual acceptance rate of the ABC-MCMC algorithm whereas the former gives the posterior samples in a matrix of \eqn{(q + c) \times nabc}, where \eqn{q} is the number of fixed effects, i.e. the columns of the design matrix and \eqn{c = 2} is the number of variance components. Hence the first \eqn{q} rows of the matrix abc give the posterior samples of the fixed effects and the last two components give the posterior samples for the variance components.
+##' @return list or list of lists with elements \code{abc} and \code{effi}. In case of \code{n.cores}=1, \code{effi} is the actual acceptance rate of the ABC-MCMC algorithm whereas in \code{abc} are stored the posterior samples. The latters are stored as a \eqn{(q + c) \times}nabc matrix, where \eqn{q} is the number of fixed effects, i.e. the number of columns in the design matrix and \eqn{c = 2} is the number of variance components. Hence, the first \eqn{q} rows of the matrix \code{abc} give the posterior samples for the fixed effects and the last two rows give the posterior samples for the log-variances of the fixed effects and the residual term, respectively. If \code{n.cores} > 1, i.e. if simulations are performed in parallel, then a list of lists is returned, where each element of the list is a list with elements \code{abc} and \code{effi}, where \code{abc} and \code{effi} are as those aforementioned.
+##'
 ##'
 ##' @references
 ##' Ruli E., Sartori N. & Ventura L. (2017)
@@ -32,10 +32,13 @@
 ##'
 ##' Richardson A. M. & Welsh A. H. (1995) Robust restricted maximum likelihood in mixed linear models. \emph{Biometrics} \bold{51}, 1429-1439.
 ##'
+##' @seealso \code{\link[robustBLME]{tune.h}}, \code{\link[robustBLME]{ergoStool}}.
 ##' @examples
 ##'
-##' ## The following example is meant only to enhance function documentation.
-##' ## For realistic applications probably you'll need to take a larger sample.
+##' ## The following example is meant for function documentation.
+##' ## For realistic use probably you'll need to take a larger sample and choose a
+##' ## "better" bandwidth h.
+##'
 ##' data(ergoStool)
 ##'
 ##' require(lme4)
@@ -49,15 +52,14 @@
 ##' ## draw posterior samples with hopt.
 ##' abc.tmp <- rblme(nabc = 1e+5, h.obj = hopt,
 ##'                  n.cores = 1)
-
-
+##'
 ##' # process ABC samples
 ##' abc.sim <- t(abc.tmp$abc)
 ##' abc.sim[,c(5,6)] <- exp(abc.sim[,c(5,6)])
-
+##'
 ##' # ABC posterior
 ##' colMeans(abc.sim)
-
+##'
 ##' # REML estimates
 ##' summary(fm1)
 ##'

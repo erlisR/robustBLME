@@ -7,10 +7,13 @@
 hpd(x, prob = 0.95)
 }
 \arguments{
-\item{x}{a univariata or marginal posterior sample.}
+\item{x}{a univariate or a posterior sample for a scalar parameter.}
 
-\item{prob}{the required posterior probability content.}
+\item{prob}{posterior probability content.}
+}
+\value{
+vector of two doubles.
 }
 \description{
-Computes empirical Highest Posterior Density (HPD) interval from a posterior sample. Works only for scalar marginal posteriors.
+Computes the Highest Posterior Density (HPD) interval from a posterior sample. Works only for scalar marginal posteriors.
 }
