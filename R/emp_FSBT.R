@@ -14,7 +14,7 @@
 ##' kdeFSBT(-2, x)
 ##'
 ##' @references
-##' Pereira, C. A. d. B., Stern, J. M. and Wechsler, S. (2008) Can a significance test be genuinely Bayesian? \emph{Baysian Analysis} \bold{3}, 79-100.
+##' Pereira, C. A. d. B., Stern, J. M. and Wechsler, S. (2008) Can a significance test be genuinely Bayesian? \emph{Bayesian Analysis} \bold{3}, 79-100.
 ##'
 ##' @export
 kdeFSBT <- function(H0, sim.sample){
