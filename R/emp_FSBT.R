@@ -11,7 +11,7 @@
 ##' @examples
 ##'
 ##' x <-  rnorm(1000, 0, 1)
-##' kdeFSBT(-2, x)
+##' kdeFSBT(-1, x)
 ##'
 ##' @references
 ##' Pereira, C. A. d. B., Stern, J. M. and Wechsler, S. (2008) Can a significance test be genuinely Bayesian? \emph{Bayesian Analysis} \bold{3}, 79-100.

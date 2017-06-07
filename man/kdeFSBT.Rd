@@ -21,7 +21,7 @@ null hypothesis based on a posterior sample. The marginal posterior density is o
 \examples{
 
 x <-  rnorm(1000, 0, 1)
-kdeFSBT(-2, x)
+kdeFSBT(-1, x)
 
 }
 \references{
