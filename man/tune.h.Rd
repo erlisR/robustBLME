@@ -19,11 +19,11 @@ expression for a model matrix and a grouping factor.}
 in \code{formula}. By default the variables are taken from the
 environment of \code{\link[lme4]{lmer}} called internally.}
 
-\item{...}{other aruments to be passed to lmer(). Currently none is used.}
+\item{...}{other arguments to be passed to \code{lmer}. Currently none is used.}
 
 \item{n.samp}{number of pilot posterior samples to be drawn with ABC for each value of \code{grid.h}.}
 
-\item{n.sim.HJ}{number of simulations to be used for computing the sensitivity and variabiliy matrices.}
+\item{n.sim.HJ}{number of simulations to be used for computing the sensitivity and variability matrices.}
 
 \item{acc.rate}{desired acceptance rate of the ABC-MCMC algorithm.}
 
@@ -31,15 +31,15 @@ environment of \code{\link[lme4]{lmer}} called internally.}
 
 \item{prior}{named list of user-defined prior hyper-parameters. See "Details" below.}
 
-\item{cHub}{tunning constant of the Huber function for the location parameter.}
+\item{cHub}{tuning constant of the Huber function for the location parameter.}
 
-\item{cHub2}{tunning constant of the Huber proposal 2 function for the scale parameter.}
+\item{cHub2}{tuning constant of the Huber proposal 2 function for the scale parameter.}
 
 \item{init}{optional object to use for starting values. Currently ignored as initial values are taken from \code{lmer}.}
 
 \item{n.cores}{number of cores for parallel computation on non Windows machines.}
 
-\item{use.h}{bandwidth to be used for the ABC distance. If provided, no tuning for \eqn{h} is performed and \code{acc.rate} is ingored.}
+\item{use.h}{bandwidth to be used for the ABC distance. If provided, no tuning for \eqn{h} is performed and \code{acc.rate} is ignored.}
 }
 \value{
 list.
@@ -48,7 +48,7 @@ list.
 Tunes the bandwidth \eqn{h} of the ABC distance to get the desired level of acceptance rate specified via \code{acc.rate}. Besides tuning \eqn{h}, the function also builds the relevant quantities needed for running \code{\link[robustBLME]{rblme}}. For generating such quantities an internal call to \code{\link[lme4]{lmer}} is performed.
 }
 \details{
-Given a specifiction of the \code{formula} and \code{data} the function calls internally \code{rlmer} and extracts from the resulting object all the necessary quantites. Then proceeds by finding the solution of the REML II robust estimating equations (Richardson & Welsh 1995), with the REML estimate used as starting point. The sensitiviy and the variability matrices are computed by simulation at the solution of the robust REML II estimating equation. Depending on whether \code{use.h} or \code{acc.rate} and \code{grid.h} are specified, the function has a different behavior. If \code{acc.rate} and \code{grid.h} are provided, then an adaptive step is performed in order to get an "optimal" \eqn{h} which gives the desired acceptance rate \code{acc.rate}. IN particular, for each value of \code{grid.h}, the function draws \code{n.samp} posterior samples with the ABC-MCMC algorithm and saves the resulting acceptance rate. Lastly, a function is built via a smoothing spline with acceptance rates being the \eqn{x}s and \code{grid.h} being the \eqn{y}s. The "optimal" value of \eqn{h} is found, within \code{grid.h}, as the prediction the spline function at \code{acc.rate}. If you already have an \eqn{h} value in mind then specify it via \code{use.h} and leave \code{grid.h} and \code{acc.rate} unspecified. Note that, in this case the acceptance rate of the ABC-MCMC algorithm may not be the one you wish to obtian since it depends in some complicated way also from \eqn{use.h}. Currently, the prior for the \eqn{q} fixed effects is the product of \eqn{q} scalar normals with mean zero and user-specified variance \code{beta.sd} (see Examples) equal for all the parameters. For the variance components the prior is a halfCauchy with user-specified scale \code{s2.scale}. Both variance parameters are assumed to have equal prior scale.
+Given a specification of the \code{formula} and \code{data} the function calls internally \code{rlmer} and extracts from the resulting object all the necessary quantities. Then proceeds by finding the solution of the REML II robust estimating equations (Richardson & Welsh 1995), with the REML estimate used as starting point. The sensitivity and the variability matrices are computed by simulation at the solution of the robust REML II estimating equation. Depending on whether \code{use.h} or \code{acc.rate} and \code{grid.h} are specified, the function has a different behaviour. If \code{acc.rate} and \code{grid.h} are provided, then an adaptive step is performed in order to get an "optimal" \eqn{h} which gives the desired acceptance rate \code{acc.rate}. IN particular, for each value of \code{grid.h}, the function draws \code{n.samp} posterior samples with the ABC-MCMC algorithm and saves the resulting acceptance rate. Lastly, a function is built via a smoothing spline with acceptance rates being the \eqn{x}s and \code{grid.h} being the \eqn{y}s. The "optimal" value of \eqn{h} is found, within \code{grid.h}, as the prediction the spline function at \code{acc.rate}. If you already have an \eqn{h} value in mind then specify it via \code{use.h} and leave \code{grid.h} and \code{acc.rate} unspecified. Note that, in this case the acceptance rate of the ABC-MCMC algorithm may not be the one you wish to obtain since it depends in some complicated way also from \eqn{use.h}. Currently, the prior for the \eqn{q} fixed effects is the product of \eqn{q} scalar normals with mean zero and user-specified variance \code{beta.sd} (see Examples) equal for all the parameters. For the variance components the prior is a halfCauchy with user-specified scale \code{s2.scale}. Both variance parameters are assumed to have equal prior scale.
 }
 \examples{
 ## tune h to get 0.8\% acceptance
