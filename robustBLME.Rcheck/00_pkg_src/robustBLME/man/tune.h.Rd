@@ -37,7 +37,7 @@ environment of \code{\link[lme4]{lmer}} called internally.}
 
 \item{init}{optional object to use for starting values. Currently ignored as initial values are taken from \code{lmer}.}
 
-\item{n.cores}{number of cores for parallel computation on non Windows machines.}
+\item{n.cores}{number of cores for parallel computation.}
 
 \item{use.h}{bandwidth to be used for the ABC distance. If provided, no tuning for \eqn{h} is performed and \code{acc.rate} is ingored.}
 }
@@ -61,7 +61,7 @@ str(hopt)
 \references{
 Ruli E., Sartori N. & Ventura L. (2017)
 Robust approximate Bayesian inference with an application to linear mixed models.
-\url{https://arxiv.org/abs/1706.01752}
+\url{https://arxiv.org/abs/1311.7286}
 
 Richardson A. M. & Welsh A. H. (1995) Robust restricted maximum likelihood in mixed linear models. \emph{Biometrics} \bold{51}, 1429-1439.
 }

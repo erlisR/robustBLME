@@ -14,7 +14,7 @@ rblme(nabc, h.obj, chain.control = list(trace.init = NULL, thin.by = NULL),
 
 \item{chain.control}{parameters that control the tracing and the thinning of the chain(s).}
 
-\item{n.cores}{number of cores for parallel computation on non Windows machines. For \code{n.cores}>2, \code{n.cores} chains are run each on a different core with using the same parameters but with a different random seed.}
+\item{n.cores}{number of cores for parallel computation. For \code{n.cores}>2, \code{n.cores} chains are run each on a different core with using the same parameters but with a different random seed.}
 }
 \value{
 list or list of lists with elements \code{abc} and \code{effi}. In case of \code{n.cores}=1, \code{effi} is the actual acceptance rate of the ABC-MCMC algorithm whereas in \code{abc} are stored the posterior samples. The latters are stored as a \eqn{(q + c) \times}nabc matrix, where \eqn{q} is the number of fixed effects, i.e. the number of columns in the design matrix and \eqn{c = 2} is the number of variance components. Hence, the first \eqn{q} rows of the matrix \code{abc} give the posterior samples for the fixed effects and the last two rows give the posterior samples for the log-variances of the fixed effects and the residual term, respectively. If \code{n.cores} > 1, i.e. if simulations are performed in parallel, then a list of lists is returned, where each element of the list is a list with elements \code{abc} and \code{effi}, where \code{abc} and \code{effi} are as those aforementioned.
@@ -56,7 +56,7 @@ summary(fm1)
 \references{
 Ruli E., Sartori N. & Ventura L. (2017)
 Robust approximate Bayesian inference with an application to linear mixed models.
-\url{https://arxiv.org/abs/1706.01752}
+\url{https://arxiv.org/abs/1311.7286}
 
 Richardson A. M. & Welsh A. H. (1995) Robust restricted maximum likelihood in mixed linear models. \emph{Biometrics} \bold{51}, 1429-1439.
 }

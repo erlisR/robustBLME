@@ -23,7 +23,7 @@
 ##' @param cHub tunning constant of the Huber function for the location parameter.
 ##' @param cHub2 tunning constant of the Huber proposal 2 function for the scale parameter.
 ##' @param init optional object to use for starting values. Currently ignored as initial values are taken from \code{lmer}.
-##' @param n.cores number of cores for parallel computation on non Windows machines.
+##' @param n.cores number of cores for parallel computation.
 ##' @param use.h bandwidth to be used for the ABC distance. If provided, no tuning for \eqn{h} is performed and \code{acc.rate} is ingored.
 #' @return list.
 #' @details Given a specifiction of the \code{formula} and \code{data} the function calls internally \code{rlmer} and extracts from the resulting object all the necessary quantites. Then proceeds by finding the solution of the REML II robust estimating equations (Richardson & Welsh 1995), with the REML estimate used as starting point. The sensitiviy and the variability matrices are computed by simulation at the solution of the robust REML II estimating equation. Depending on whether \code{use.h} or \code{acc.rate} and \code{grid.h} are specified, the function has a different behavior. If \code{acc.rate} and \code{grid.h} are provided, then an adaptive step is performed in order to get an "optimal" \eqn{h} which gives the desired acceptance rate \code{acc.rate}. IN particular, for each value of \code{grid.h}, the function draws \code{n.samp} posterior samples with the ABC-MCMC algorithm and saves the resulting acceptance rate. Lastly, a function is built via a smoothing spline with acceptance rates being the \eqn{x}s and \code{grid.h} being the \eqn{y}s. The "optimal" value of \eqn{h} is found, within \code{grid.h}, as the prediction the spline function at \code{acc.rate}. If you already have an \eqn{h} value in mind then specify it via \code{use.h} and leave \code{grid.h} and \code{acc.rate} unspecified. Note that, in this case the acceptance rate of the ABC-MCMC algorithm may not be the one you wish to obtian since it depends in some complicated way also from \eqn{use.h}. Currently, the prior for the \eqn{q} fixed effects is the product of \eqn{q} scalar normals with mean zero and user-specified variance \code{beta.sd} (see Examples) equal for all the parameters. For the variance components the prior is a halfCauchy with user-specified scale \code{s2.scale}. Both variance parameters are assumed to have equal prior scale.
@@ -31,7 +31,7 @@
 ##' @references
 ##' Ruli E., Sartori N. & Ventura L. (2017)
 ##' Robust approximate Bayesian inference with an application to linear mixed models.
-##' \url{https://arxiv.org/abs/1706.01752}
+##' \url{https://arxiv.org/abs/1311.7286}
 ##'
 ##' Richardson A. M. & Welsh A. H. (1995) Robust restricted maximum likelihood in mixed linear models. \emph{Biometrics} \bold{51}, 1429-1439.
 ##'

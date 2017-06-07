@@ -2,55 +2,55 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 psi_huber <- function(x, c) {
-    .Call(robustBLME_psi_huber, x, c)
+    .Call('robustBLME_psi_huber', PACKAGE = 'robustBLME', x, c)
 }
 
 vpsi_huber <- function(x, c, xLen) {
-    .Call(robustBLME_vpsi_huber, x, c, xLen)
+    .Call('robustBLME_vpsi_huber', PACKAGE = 'robustBLME', x, c, xLen)
 }
 
 psip_huber <- function(x, c) {
-    .Call(robustBLME_psip_huber, x, c)
+    .Call('robustBLME_psip_huber', PACKAGE = 'robustBLME', x, c)
 }
 
 dhalfCauchy <- function(x, scale, lg = FALSE) {
-    .Call(robustBLME_dhalfCauchy, x, scale, lg)
+    .Call('robustBLME_dhalfCauchy', PACKAGE = 'robustBLME', x, scale, lg)
 }
 
 dinvgamma <- function(x, shape, scale, lg) {
-    .Call(robustBLME_dinvgamma, x, shape, scale, lg)
+    .Call('robustBLME_dinvgamma', PACKAGE = 'robustBLME', x, shape, scale, lg)
 }
 
 thinMat <- function(X, index) {
-    .Call(robustBLME_thinMat, X, index)
+    .Call('robustBLME_thinMat', PACKAGE = 'robustBLME', X, index)
 }
 
 rmvnorm <- function(mu, S, p) {
-    .Call(robustBLME_rmvnorm, mu, S, p)
+    .Call('robustBLME_rmvnorm', PACKAGE = 'robustBLME', mu, S, p)
 }
 
 rmvnorm2 <- function(mu, lowcholS, p) {
-    .Call(robustBLME_rmvnorm2, mu, lowcholS, p)
+    .Call('robustBLME_rmvnorm2', PACKAGE = 'robustBLME', mu, lowcholS, p)
 }
 
 rmvt <- function(mu, lowcholS, p, df) {
-    .Call(robustBLME_rmvt, mu, lowcholS, p, df)
+    .Call('robustBLME_rmvt', PACKAGE = 'robustBLME', mu, lowcholS, p, df)
 }
 
 dmvt <- function(x, mu, S, ldetS, p, df, lg) {
-    .Call(robustBLME_dmvt, x, mu, S, ldetS, p, df, lg)
+    .Call('robustBLME_dmvt', PACKAGE = 'robustBLME', x, mu, S, ldetS, p, df, lg)
 }
 
 dPrior_lmm <- function(betas, log_sig2_b, log_sig2_eps, beta_stDev, sig2_scale, n_betas, log_) {
-    .Call(robustBLME_dPrior_lmm, betas, log_sig2_b, log_sig2_eps, beta_stDev, sig2_scale, n_betas, log_)
+    .Call('robustBLME_dPrior_lmm', PACKAGE = 'robustBLME', betas, log_sig2_b, log_sig2_eps, beta_stDev, sig2_scale, n_betas, log_)
 }
 
 dmvnorm_I <- function(x, h, dim_x, log_) {
-    .Call(robustBLME_dmvnorm_I, x, h, dim_x, log_)
+    .Call('robustBLME_dmvnorm_I', PACKAGE = 'robustBLME', x, h, dim_x, log_)
 }
 
 V_list <- function(sig2_b, sig2_eps, ZZt_b, ZZt_b_ii, ZZt_eps, ZZt_eps_ii, m_i) {
-    .Call(robustBLME_V_list, sig2_b, sig2_eps, ZZt_b, ZZt_b_ii, ZZt_eps, ZZt_eps_ii, m_i)
+    .Call('robustBLME_V_list', PACKAGE = 'robustBLME', sig2_b, sig2_eps, ZZt_b, ZZt_b_ii, ZZt_eps, ZZt_eps_ii, m_i)
 }
 
 #' @title Robust Restricted Likelihood Estimating Function II
@@ -80,7 +80,7 @@ V_list <- function(sig2_b, sig2_eps, ZZt_b, ZZt_b_ii, ZZt_eps, ZZt_eps_ii, m_i) 
 #' @param n_ind the number of individuals
 #' @noRd
 Psi_reml2 <- function(betas, sig2_b, sig2_eps, y, Xn, Xnt, ZZt_b, ZZt_b_ii, ZZt_eps, ZZt_eps_ii, c_hub, c2_hub, K2n, n_betas, m_i, n, n_ind) {
-    .Call(robustBLME_Psi_reml2, betas, sig2_b, sig2_eps, y, Xn, Xnt, ZZt_b, ZZt_b_ii, ZZt_eps, ZZt_eps_ii, c_hub, c2_hub, K2n, n_betas, m_i, n, n_ind)
+    .Call('robustBLME_Psi_reml2', PACKAGE = 'robustBLME', betas, sig2_b, sig2_eps, y, Xn, Xnt, ZZt_b, ZZt_b_ii, ZZt_eps, ZZt_eps_ii, c_hub, c2_hub, K2n, n_betas, m_i, n, n_ind)
 }
 
 #' @title Robust REML II Estimating Function for fixed effects
@@ -106,7 +106,7 @@ Psi_reml2 <- function(betas, sig2_b, sig2_eps, y, Xn, Xnt, ZZt_b, ZZt_b_ii, ZZt_
 #' @param n_ind the number of individuals
 #' @noRd
 Psi_reml2_betas <- function(betas, sig2_b, sig2_eps, y, Xn, ZZt_b, ZZt_b_ii, ZZt_eps, ZZt_eps_ii, c_hub, n_betas, m_i, n, n_ind) {
-    .Call(robustBLME_Psi_reml2_betas, betas, sig2_b, sig2_eps, y, Xn, ZZt_b, ZZt_b_ii, ZZt_eps, ZZt_eps_ii, c_hub, n_betas, m_i, n, n_ind)
+    .Call('robustBLME_Psi_reml2_betas', PACKAGE = 'robustBLME', betas, sig2_b, sig2_eps, y, Xn, ZZt_b, ZZt_b_ii, ZZt_eps, ZZt_eps_ii, c_hub, n_betas, m_i, n, n_ind)
 }
 
 #' @title Robust REML II Estimating Function for the random effects
@@ -135,7 +135,7 @@ Psi_reml2_betas <- function(betas, sig2_b, sig2_eps, y, Xn, ZZt_b, ZZt_b_ii, ZZt
 #' @param n_ind the number of individuals
 #' @noRd
 Psi_reml2_sig2_b <- function(betas, sig2_b, sig2_eps, y, Xn, Xnt, ZZt_b, ZZt_b_ii, ZZt_eps, ZZt_eps_ii, c2_hub, K2n, n_betas, m_i, n, n_ind) {
-    .Call(robustBLME_Psi_reml2_sig2_b, betas, sig2_b, sig2_eps, y, Xn, Xnt, ZZt_b, ZZt_b_ii, ZZt_eps, ZZt_eps_ii, c2_hub, K2n, n_betas, m_i, n, n_ind)
+    .Call('robustBLME_Psi_reml2_sig2_b', PACKAGE = 'robustBLME', betas, sig2_b, sig2_eps, y, Xn, Xnt, ZZt_b, ZZt_b_ii, ZZt_eps, ZZt_eps_ii, c2_hub, K2n, n_betas, m_i, n, n_ind)
 }
 
 #' @title Robust REML II Estimating Function for the random effects
@@ -164,62 +164,62 @@ Psi_reml2_sig2_b <- function(betas, sig2_b, sig2_eps, y, Xn, Xnt, ZZt_b, ZZt_b_i
 #' @param n_ind the number of individuals
 #' @noRd
 Psi_reml2_sig2_eps <- function(betas, sig2_b, sig2_eps, y, Xn, Xnt, ZZt_b, ZZt_b_ii, ZZt_eps, ZZt_eps_ii, c2_hub, K2n, n_betas, m_i, n, n_ind) {
-    .Call(robustBLME_Psi_reml2_sig2_eps, betas, sig2_b, sig2_eps, y, Xn, Xnt, ZZt_b, ZZt_b_ii, ZZt_eps, ZZt_eps_ii, c2_hub, K2n, n_betas, m_i, n, n_ind)
+    .Call('robustBLME_Psi_reml2_sig2_eps', PACKAGE = 'robustBLME', betas, sig2_b, sig2_eps, y, Xn, Xnt, ZZt_b, ZZt_b_ii, ZZt_eps, ZZt_eps_ii, c2_hub, K2n, n_betas, m_i, n, n_ind)
 }
 
 Psi_rlmm_reml2_abc <- function(betas, V_inv, V_inv_1half, y, Xn, Xnt, ZZt_b_ii, c_hub, c2_hub, n_betas, m_i, n, n_ind, consistency_b, consistency_eps) {
-    .Call(robustBLME_Psi_rlmm_reml2_abc, betas, V_inv, V_inv_1half, y, Xn, Xnt, ZZt_b_ii, c_hub, c2_hub, n_betas, m_i, n, n_ind, consistency_b, consistency_eps)
+    .Call('robustBLME_Psi_rlmm_reml2_abc', PACKAGE = 'robustBLME', betas, V_inv, V_inv_1half, y, Xn, Xnt, ZZt_b_ii, c_hub, c2_hub, n_betas, m_i, n, n_ind, consistency_b, consistency_eps)
 }
 
 Psi_rlmm_reml2_ith <- function(betas, sig2_b, sig2_eps, y, Xn, Xnt, ZZt_b, ZZt_b_ii, ZZt_eps, ZZt_eps_ii, c_hub, c2_hub, K2n, n_betas, m_i, n, n_ind, ith) {
-    .Call(robustBLME_Psi_rlmm_reml2_ith, betas, sig2_b, sig2_eps, y, Xn, Xnt, ZZt_b, ZZt_b_ii, ZZt_eps, ZZt_eps_ii, c_hub, c2_hub, K2n, n_betas, m_i, n, n_ind, ith)
+    .Call('robustBLME_Psi_rlmm_reml2_ith', PACKAGE = 'robustBLME', betas, sig2_b, sig2_eps, y, Xn, Xnt, ZZt_b, ZZt_b_ii, ZZt_eps, ZZt_eps_ii, c_hub, c2_hub, K2n, n_betas, m_i, n, n_ind, ith)
 }
 
 Psi_rlmm_reml2_alli <- function(betas, sig2_b, sig2_eps, y, Xn, Xnt, ZZt_b, ZZt_b_ii, ZZt_eps, ZZt_eps_ii, c_hub, c2_hub, K2n, n_betas, m_i, n, n_ind) {
-    .Call(robustBLME_Psi_rlmm_reml2_alli, betas, sig2_b, sig2_eps, y, Xn, Xnt, ZZt_b, ZZt_b_ii, ZZt_eps, ZZt_eps_ii, c_hub, c2_hub, K2n, n_betas, m_i, n, n_ind)
+    .Call('robustBLME_Psi_rlmm_reml2_alli', PACKAGE = 'robustBLME', betas, sig2_b, sig2_eps, y, Xn, Xnt, ZZt_b, ZZt_b_ii, ZZt_eps, ZZt_eps_ii, c_hub, c2_hub, K2n, n_betas, m_i, n, n_ind)
 }
 
 simData_rlmm <- function(betas, sig2_b, sig2_eps, Xn, ZZt_b_ii, ZZt_eps_ii, m_i, n_ind) {
-    .Call(robustBLME_simData_rlmm, betas, sig2_b, sig2_eps, Xn, ZZt_b_ii, ZZt_eps_ii, m_i, n_ind)
+    .Call('robustBLME_simData_rlmm', PACKAGE = 'robustBLME', betas, sig2_b, sig2_eps, Xn, ZZt_b_ii, ZZt_eps_ii, m_i, n_ind)
 }
 
 ABCkern_reml2 <- function(nabc, h, y, Xn, ZZt_b, ZZt_b_ii, ZZt_eps, ZZt_eps_ii, c_hub, c2_hub, K2n, param_hat, lch_prop_scale_mat, Psi_hat, chol_J_Psi_hat, prior_beta_stdev, prior_sig2_scale, thin, trace_int, m_i, n_ind) {
-    .Call(robustBLME_ABCkern_reml2, nabc, h, y, Xn, ZZt_b, ZZt_b_ii, ZZt_eps, ZZt_eps_ii, c_hub, c2_hub, K2n, param_hat, lch_prop_scale_mat, Psi_hat, chol_J_Psi_hat, prior_beta_stdev, prior_sig2_scale, thin, trace_int, m_i, n_ind)
+    .Call('robustBLME_ABCkern_reml2', PACKAGE = 'robustBLME', nabc, h, y, Xn, ZZt_b, ZZt_b_ii, ZZt_eps, ZZt_eps_ii, c_hub, c2_hub, K2n, param_hat, lch_prop_scale_mat, Psi_hat, chol_J_Psi_hat, prior_beta_stdev, prior_sig2_scale, thin, trace_int, m_i, n_ind)
 }
 
 log_lik_lmm <- function(betas, sig2_b, sig2_eps, y, Xn, ZZt_b_ii, ZZt_eps_ii, n_betas, m_i, n, n_ind) {
-    .Call(robustBLME_log_lik_lmm, betas, sig2_b, sig2_eps, y, Xn, ZZt_b_ii, ZZt_eps_ii, n_betas, m_i, n, n_ind)
+    .Call('robustBLME_log_lik_lmm', PACKAGE = 'robustBLME', betas, sig2_b, sig2_eps, y, Xn, ZZt_b_ii, ZZt_eps_ii, n_betas, m_i, n, n_ind)
 }
 
 funPsi_rls <- function(mu, sig, y, n, c1, c2, kc2) {
-    .Call(robustBLME_funPsi_rls, mu, sig, y, n, c1, c2, kc2)
+    .Call('robustBLME_funPsi_rls', PACKAGE = 'robustBLME', mu, sig, y, n, c1, c2, kc2)
 }
 
 Owen_Psi <- function(mu, sig, y, n, c1, c2, kc2) {
-    .Call(robustBLME_Owen_Psi, mu, sig, y, n, c1, c2, kc2)
+    .Call('robustBLME_Owen_Psi', PACKAGE = 'robustBLME', mu, sig, y, n, c1, c2, kc2)
 }
 
 Owen_Lmult <- function(lambda, mu, sig, y, n, c1, c2, kc2) {
-    .Call(robustBLME_Owen_Lmult, lambda, mu, sig, y, n, c1, c2, kc2)
+    .Call('robustBLME_Owen_Lmult', PACKAGE = 'robustBLME', lambda, mu, sig, y, n, c1, c2, kc2)
 }
 
 dPrior <- function(mu, lsig, muSD, sigScale, lg = FALSE) {
-    .Call(robustBLME_dPrior, mu, lsig, muSD, sigScale, lg)
+    .Call('robustBLME_dPrior', PACKAGE = 'robustBLME', mu, lsig, muSD, sigScale, lg)
 }
 
 simData_rls <- function(mu, sig, n) {
-    .Call(robustBLME_simData_rls, mu, sig, n)
+    .Call('robustBLME_simData_rls', PACKAGE = 'robustBLME', mu, sig, n)
 }
 
 ABCrls <- function(nabc, eps, y, c1, c2, kc2, hatPar, hatVcov, hatGrad, hatJinv, muSD, sigScale, thin) {
-    .Call(robustBLME_ABCrls, nabc, eps, y, c1, c2, kc2, hatPar, hatVcov, hatGrad, hatJinv, muSD, sigScale, thin)
+    .Call('robustBLME_ABCrls', PACKAGE = 'robustBLME', nabc, eps, y, c1, c2, kc2, hatPar, hatVcov, hatGrad, hatJinv, muSD, sigScale, thin)
 }
 
 distPsi_rls <- function(mu_lsig, y, c1, c2, kc2) {
-    .Call(robustBLME_distPsi_rls, mu_lsig, y, c1, c2, kc2)
+    .Call('robustBLME_distPsi_rls', PACKAGE = 'robustBLME', mu_lsig, y, c1, c2, kc2)
 }
 
 post_ls <- function(mu, lsig, y, muSD, sigScale, lg = FALSE) {
-    .Call(robustBLME_post_ls, mu, lsig, y, muSD, sigScale, lg)
+    .Call('robustBLME_post_ls', PACKAGE = 'robustBLME', mu, lsig, y, muSD, sigScale, lg)
 }
 

@@ -1,0 +1,7 @@
+ergoStool               Ergometrics experiment with stool types
+hpd                     Empirical Highest Posterior Density Interval
+kdeFSBT                 Full Significance Bayesian Testing
+rblme                   Fits robust Bayesian Linear Mixed-effects
+                        Models (LMM) to data via robust REML estimating
+                        functions.
+tune.h                  Tune ABC distance bandwidth

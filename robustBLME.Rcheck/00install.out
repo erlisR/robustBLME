@@ -1,0 +1,18 @@
+* installing *source* package ‘robustBLME’ ...
+** libs
+ccache clang++ -arch x86_64 -ftemplate-depth-256 -Qunused-arguments -I/Library/Frameworks/R.framework/Resources/include -I/Library/Frameworks/R.framework/Versions/3.3/Resources/library/Rcpp/include -I"/Library/Frameworks/R.framework/Versions/3.3/Resources/library/RcppArmadillo/include"  -I/usr/local/include -I/usr/local/include/freetype2 -I/opt/X11/include -I"/Library/Frameworks/R.framework/Versions/3.3/Resources/library/Rcpp/include" -I"/Library/Frameworks/R.framework/Versions/3.3/Resources/library/RcppArmadillo/include"   -fPIC  -Wall -mtune=core2 -O3    -c RcppExports.cpp -o RcppExports.o
+ccache clang++ -arch x86_64 -ftemplate-depth-256 -Qunused-arguments -I/Library/Frameworks/R.framework/Resources/include -I/Library/Frameworks/R.framework/Versions/3.3/Resources/library/Rcpp/include -I"/Library/Frameworks/R.framework/Versions/3.3/Resources/library/RcppArmadillo/include"  -I/usr/local/include -I/usr/local/include/freetype2 -I/opt/X11/include -I"/Library/Frameworks/R.framework/Versions/3.3/Resources/library/Rcpp/include" -I"/Library/Frameworks/R.framework/Versions/3.3/Resources/library/RcppArmadillo/include"   -fPIC  -Wall -mtune=core2 -O3    -c extrafuns_cpp.cpp -o extrafuns_cpp.o
+ccache clang++ -arch x86_64 -ftemplate-depth-256 -Qunused-arguments -I/Library/Frameworks/R.framework/Resources/include -I/Library/Frameworks/R.framework/Versions/3.3/Resources/library/Rcpp/include -I"/Library/Frameworks/R.framework/Versions/3.3/Resources/library/RcppArmadillo/include"  -I/usr/local/include -I/usr/local/include/freetype2 -I/opt/X11/include -I"/Library/Frameworks/R.framework/Versions/3.3/Resources/library/Rcpp/include" -I"/Library/Frameworks/R.framework/Versions/3.3/Resources/library/RcppArmadillo/include"   -fPIC  -Wall -mtune=core2 -O3    -c robust_lmm.cpp -o robust_lmm.o
+ccache clang++ -arch x86_64 -ftemplate-depth-256 -Qunused-arguments -I/Library/Frameworks/R.framework/Resources/include -I/Library/Frameworks/R.framework/Versions/3.3/Resources/library/Rcpp/include -I"/Library/Frameworks/R.framework/Versions/3.3/Resources/library/RcppArmadillo/include"  -I/usr/local/include -I/usr/local/include/freetype2 -I/opt/X11/include -I"/Library/Frameworks/R.framework/Versions/3.3/Resources/library/Rcpp/include" -I"/Library/Frameworks/R.framework/Versions/3.3/Resources/library/RcppArmadillo/include"   -fPIC  -Wall -mtune=core2 -O3    -c robust_loc_scale.cpp -o robust_loc_scale.o
+ccache clang++ -arch x86_64 -ftemplate-depth-256 -Qunused-arguments -dynamiclib -Wl,-headerpad_max_install_names -undefined dynamic_lookup -single_module -multiply_defined suppress -L/Library/Frameworks/R.framework/Resources/lib -L/usr/local/lib -o robustBLME.so RcppExports.o extrafuns_cpp.o robust_lmm.o robust_loc_scale.o -L/Library/Frameworks/R.framework/Resources/lib -lRblas -L/usr/local/bin/ -L/Library/Frameworks/R.framework/Resources/lib -lRlapack -F/Library/Frameworks/R.framework/.. -framework R -Wl,-framework -Wl,CoreFoundation
+installing to /Users/erlisruli/Dropbox/R_and_C/robustBLME_0.1.2/robustBLME.Rcheck/robustBLME/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** preparing package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded
+* DONE (robustBLME)
