@@ -1,236 +1,0 @@
-
-R version 3.3.3 (2017-03-06) -- "Another Canoe"
-Copyright (C) 2017 The R Foundation for Statistical Computing
-Platform: x86_64-apple-darwin13.4.0 (64-bit)
-
-R is free software and comes with ABSOLUTELY NO WARRANTY.
-You are welcome to redistribute it under certain conditions.
-Type 'license()' or 'licence()' for distribution details.
-
-  Natural language support but running in an English locale
-
-R is a collaborative project with many contributors.
-Type 'contributors()' for more information and
-'citation()' on how to cite R or R packages in publications.
-
-Type 'demo()' for some demos, 'help()' for on-line help, or
-'help.start()' for an HTML browser interface to help.
-Type 'q()' to quit R.
-
-> pkgname <- "robustBLME"
-> source(file.path(R.home("share"), "R", "examples-header.R"))
-> options(warn = 1)
-> base::assign(".ExTimings", "robustBLME-Ex.timings", pos = 'CheckExEnv')
-> base::cat("name\tuser\tsystem\telapsed\n", file=base::get(".ExTimings", pos = 'CheckExEnv'))
-> base::assign(".format_ptime",
-+ function(x) {
-+   if(!is.na(x[4L])) x[1L] <- x[1L] + x[4L]
-+   if(!is.na(x[5L])) x[2L] <- x[2L] + x[5L]
-+   options(OutDec = '.')
-+   format(x[1L:3L], digits = 7L)
-+ },
-+ pos = 'CheckExEnv')
-> 
-> ### * </HEADER>
-> library('robustBLME')
-Loading required package: lme4
-Loading required package: Matrix
-> 
-> base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
-> cleanEx()
-> nameEx("kdeFSBT")
-> ### * kdeFSBT
-> 
-> flush(stderr()); flush(stdout())
-> 
-> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
-> ### Name: kdeFSBT
-> ### Title: Full Significance Bayesian Testing
-> ### Aliases: kdeFSBT
-> 
-> ### ** Examples
-> 
-> 
-> x <-  rnorm(1000, 0, 1)
-> kdeFSBT(-2, x)
-Warning in kdeFSBT(-2, x) : 'H0' is outside the range of 'sim.sample'
-[1] 0
-> 
-> 
-> 
-> 
-> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
-> base::cat("kdeFSBT", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
-> cleanEx()
-> nameEx("rblme")
-> ### * rblme
-> 
-> flush(stderr()); flush(stdout())
-> 
-> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
-> ### Name: rblme
-> ### Title: Fits robust Bayesian Linear Mixed-effects Models (LMM) to data
-> ###   via robust REML estimating functions.
-> ### Aliases: rblme
-> 
-> ### ** Examples
-> 
-> 
-> ## The following example is meant for function documentation.
-> ## For realistic use probably you'll need to take a larger sample and choose a
-> ## "better" bandwidth h.
-> 
-> data(ergoStool)
-> 
-> require(lme4)
-> fm1 <- lmer(effort~Type + (1| Subject), data = ergoStool)
-> 
-> ## tune h to get 0.8% acceptance
-> hopt <- tune.h(effort~Type + (1|Subject), data = ergoStool,
-+                acc.rate = 0.008, n.sim.HJ = 500, grid.h = seq(0.3, 0.7, len = 10),
-+                prior = list(beta.sd = 10, s2.scale = 5), n.cores = 1)
-##################################################
-  Starting Gauss-Seidel iteration
-Psi:   0.0547746099641511  0.00352827812095023  2.54172549684552e-05  9.6477405074899e-06  9.63486153647724e-06  9.63481405458595e-06  9.63481373439305e-06  9.63481372661777e-06  9.63481372679314e-06
- Finished after: 10 iterations 
-##################################################
-
-#########################################################
- Sensitivity & Variability mat.s with 500 Monte Carlo samples
-  |                                                                              |                                                                      |   0%  |                                                                              |=                                                                     |   2%  |                                                                              |===                                                                   |   4%  |                                                                              |====                                                                  |   6%  |                                                                              |======                                                                |   8%  |                                                                              |=======                                                               |  10%  |                                                                              |========                                                              |  12%  |                                                                              |==========                                                            |  14%  |                                                                              |===========                                                           |  16%  |                                                                              |=============                                                         |  18%  |                                                                              |==============                                                        |  20%  |                                                                              |===============                                                       |  22%  |                                                                              |=================                                                     |  24%  |                                                                              |==================                                                    |  26%  |                                                                              |====================                                                  |  28%  |                                                                              |=====================                                                 |  30%  |                                                                              |======================                                                |  32%  |                                                                              |========================                                              |  34%  |                                                                              |=========================                                             |  36%  |                                                                              |===========================                                           |  38%  |                                                                              |============================                                          |  40%  |                                                                              |=============================                                         |  42%  |                                                                              |===============================                                       |  44%  |                                                                              |================================                                      |  46%  |                                                                              |==================================                                    |  48%  |                                                                              |===================================                                   |  50%  |                                                                              |====================================                                  |  52%  |                                                                              |======================================                                |  54%  |                                                                              |=======================================                               |  56%  |                                                                              |=========================================                             |  58%  |                                                                              |==========================================                            |  60%  |                                                                              |===========================================                           |  62%  |                                                                              |=============================================                         |  64%  |                                                                              |==============================================                        |  66%  |                                                                              |================================================                      |  68%  |                                                                              |=================================================                     |  70%  |                                                                              |==================================================                    |  72%  |                                                                              |====================================================                  |  74%  |                                                                              |=====================================================                 |  76%  |                                                                              |=======================================================               |  78%  |                                                                              |========================================================              |  80%  |                                                                              |=========================================================             |  82%  |                                                                              |===========================================================           |  84%  |                                                                              |============================================================          |  86%  |                                                                              |==============================================================        |  88%  |                                                                              |===============================================================       |  90%  |                                                                              |================================================================      |  92%  |                                                                              |==================================================================    |  94%  |                                                                              |===================================================================   |  96%  |                                                                              |===================================================================== |  98%  |                                                                              |======================================================================| 100%
-#####################################################
- Optimising h to get 0.8 % acceptance
-  |                                                                              |                                                                      |   0%  |                                                                              |=======                                                               |  10%  |                                                                              |==============                                                        |  20%  |                                                                              |=====================                                                 |  30%  |                                                                              |============================                                          |  40%  |                                                                              |===================================                                   |  50%  |                                                                              |==========================================                            |  60%  |                                                                              |=================================================                     |  70%  |                                                                              |========================================================              |  80%  |                                                                              |===============================================================       |  90%  |                                                                              |======================================================================| 100%
- Optimal h =  0.57 actual acceptance rate =  0.8 %> 
-> ## draw posterior samples with hopt.
-> abc.tmp <- rblme(nabc = 1e+5, h.obj = hopt,
-+                  n.cores = 1)
-ABC 10000 of 100000, accpted 79, acc.ratio 0.007900ABC 20000 of 100000, accpted 237, acc.ratio 0.011850ABC 30000 of 100000, accpted 347, acc.ratio 0.011567ABC 40000 of 100000, accpted 437, acc.ratio 0.010925ABC 50000 of 100000, accpted 550, acc.ratio 0.011000ABC 60000 of 100000, accpted 679, acc.ratio 0.011317ABC 70000 of 100000, accpted 755, acc.ratio 0.010786ABC 80000 of 100000, accpted 855, acc.ratio 0.010688ABC 90000 of 100000, accpted 993, acc.ratio 0.011033> 
-> # process ABC samples
-> abc.sim <- t(abc.tmp$abc)
-> abc.sim[,c(5,6)] <- exp(abc.sim[,c(5,6)])
-> 
-> # ABC posterior
-> colMeans(abc.sim)
-[1] 8.5683856 3.9099486 2.1856245 0.6204361 2.3786784 1.5372010
-> 
-> # REML estimates
-> summary(fm1)
-Linear mixed model fit by REML ['lmerMod']
-Formula: effort ~ Type + (1 | Subject)
-   Data: ergoStool
-
-REML criterion at convergence: 121.1
-
-Scaled residuals: 
-     Min       1Q   Median       3Q      Max 
--1.80200 -0.64317  0.05783  0.70100  1.63142 
-
-Random effects:
- Groups   Name        Variance Std.Dev.
- Subject  (Intercept) 1.775    1.332   
- Residual             1.211    1.100   
-Number of obs: 36, groups:  Subject, 9
-
-Fixed effects:
-            Estimate Std. Error t value
-(Intercept)   8.5556     0.5760  14.853
-TypeT2        3.8889     0.5187   7.498
-TypeT3        2.2222     0.5187   4.284
-TypeT4        0.6667     0.5187   1.285
-
-Correlation of Fixed Effects:
-       (Intr) TypeT2 TypeT3
-TypeT2 -0.450              
-TypeT3 -0.450  0.500       
-TypeT4 -0.450  0.500  0.500
-> 
-> 
-> 
-> 
-> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
-> base::cat("rblme", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
-> cleanEx()
-> nameEx("tune.h")
-> ### * tune.h
-> 
-> flush(stderr()); flush(stdout())
-> 
-> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
-> ### Name: tune.h
-> ### Title: Tune ABC distance bandwidth
-> ### Aliases: tune.h
-> 
-> ### ** Examples
-> 
-> ## tune h to get 0.8% acceptance
-> hopt <- tune.h(effort~Type + (1|Subject), data = ergoStool,
-+                acc.rate = 0.008, n.sim.HJ = 500, grid.h = seq(0.3, 0.7, len = 10),
-+                prior = list(beta.sd = 10, s2.scale = 5), n.cores = 1)
-##################################################
-  Starting Gauss-Seidel iteration
-Psi:   0.0547746099641511  0.00352827812095023  2.54172549684552e-05  9.6477405074899e-06  9.63486153647724e-06  9.63481405458595e-06  9.63481373439305e-06  9.63481372661777e-06  9.63481372679314e-06
- Finished after: 10 iterations 
-##################################################
-
-#########################################################
- Sensitivity & Variability mat.s with 500 Monte Carlo samples
-  |                                                                              |                                                                      |   0%  |                                                                              |=                                                                     |   2%  |                                                                              |===                                                                   |   4%  |                                                                              |====                                                                  |   6%  |                                                                              |======                                                                |   8%  |                                                                              |=======                                                               |  10%  |                                                                              |========                                                              |  12%  |                                                                              |==========                                                            |  14%  |                                                                              |===========                                                           |  16%  |                                                                              |=============                                                         |  18%  |                                                                              |==============                                                        |  20%  |                                                                              |===============                                                       |  22%  |                                                                              |=================                                                     |  24%  |                                                                              |==================                                                    |  26%  |                                                                              |====================                                                  |  28%  |                                                                              |=====================                                                 |  30%  |                                                                              |======================                                                |  32%  |                                                                              |========================                                              |  34%  |                                                                              |=========================                                             |  36%  |                                                                              |===========================                                           |  38%  |                                                                              |============================                                          |  40%  |                                                                              |=============================                                         |  42%  |                                                                              |===============================                                       |  44%  |                                                                              |================================                                      |  46%  |                                                                              |==================================                                    |  48%  |                                                                              |===================================                                   |  50%  |                                                                              |====================================                                  |  52%  |                                                                              |======================================                                |  54%  |                                                                              |=======================================                               |  56%  |                                                                              |=========================================                             |  58%  |                                                                              |==========================================                            |  60%  |                                                                              |===========================================                           |  62%  |                                                                              |=============================================                         |  64%  |                                                                              |==============================================                        |  66%  |                                                                              |================================================                      |  68%  |                                                                              |=================================================                     |  70%  |                                                                              |==================================================                    |  72%  |                                                                              |====================================================                  |  74%  |                                                                              |=====================================================                 |  76%  |                                                                              |=======================================================               |  78%  |                                                                              |========================================================              |  80%  |                                                                              |=========================================================             |  82%  |                                                                              |===========================================================           |  84%  |                                                                              |============================================================          |  86%  |                                                                              |==============================================================        |  88%  |                                                                              |===============================================================       |  90%  |                                                                              |================================================================      |  92%  |                                                                              |==================================================================    |  94%  |                                                                              |===================================================================   |  96%  |                                                                              |===================================================================== |  98%  |                                                                              |======================================================================| 100%
-#####################################################
- Optimising h to get 0.8 % acceptance
-  |                                                                              |                                                                      |   0%  |                                                                              |=======                                                               |  10%  |                                                                              |==============                                                        |  20%  |                                                                              |=====================                                                 |  30%  |                                                                              |============================                                          |  40%  |                                                                              |===================================                                   |  50%  |                                                                              |==========================================                            |  60%  |                                                                              |=================================================                     |  70%  |                                                                              |========================================================              |  80%  |                                                                              |===============================================================       |  90%  |                                                                              |======================================================================| 100%
- Optimal h =  0.57 actual acceptance rate =  0.8 %> str(hopt)
-List of 17
- $ h.opt             : num 0.567
- $ y                 : num [1:4, 1:9] 12 15 12 10 10 14 13 12 7 14 ...
- $ Xn                : num [1:36, 1:4] 1 1 1 1 1 1 1 1 1 1 ...
-  ..- attr(*, "dimnames")=List of 2
-  .. ..$ : chr [1:36] "1" "2" "3" "4" ...
-  .. ..$ : chr [1:4] "(Intercept)" "TypeT2" "TypeT3" "TypeT4"
-  ..- attr(*, "assign")= int [1:4] 0 1 1 1
-  ..- attr(*, "contrasts")=List of 1
-  .. ..$ Type: chr "contr.treatment"
-  ..- attr(*, "msgScaleX")= chr(0) 
- $ ZZt_b             : num [1:36, 1:36] 1 1 1 1 0 0 0 0 0 0 ...
-  ..- attr(*, "dimnames")=List of 2
-  .. ..$ : chr [1:36] "1" "2" "3" "4" ...
-  .. ..$ : chr [1:36] "1" "2" "3" "4" ...
- $ ZZt_b_ii          : num [1:4, 1:4] 1 1 1 1 1 1 1 1 1 1 ...
-  ..- attr(*, "dimnames")=List of 2
-  .. ..$ : chr [1:4] "1" "2" "3" "4"
-  .. ..$ : chr [1:4] "1" "2" "3" "4"
- $ ZZt_eps           : num [1:36, 1:36] 1 0 0 0 0 0 0 0 0 0 ...
- $ ZZt_eps_ii        : num [1:4, 1:4] 1 0 0 0 0 1 0 0 0 0 ...
- $ cHub              : num 1.34
- $ cHub2             : num 2.07
- $ K2n               : num [1:36, 1:36] 0.932 0 0 0 0 ...
- $ param.hat         : num [1:6] 8.474 3.938 2.24 0.715 0.646 ...
- $ lch_prop_scale_mat: num [1:6, 1:6] 0.61948 -0.27189 -0.24671 -0.2582 -0.00419 ...
- $ Psi.hat           : num [1:6] -9.19e-10 1.43e-09 3.75e-09 -2.17e-09 -1.49e-06 ...
- $ lchol_J_Psi_hat   : num [1:6, 1:6] 0.706 0 0 0 0 ...
- $ prior             :List of 2
-  ..$ beta.sd : num 10
-  ..$ s2.scale: num 5
- $ m_i               : num 4
- $ n_ind             : int 9
- - attr(*, "class")= chr "rblmeMod"
-> 
-> 
-> 
-> 
-> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
-> base::cat("tune.h", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
-> ### * <FOOTER>
-> ###
-> options(digits = 7L)
-> base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
-Time elapsed:  30.735 0.286 31.292 0 0 
-> grDevices::dev.off()
-null device 
-          1 
-> ###
-> ### Local variables: ***
-> ### mode: outline-minor ***
-> ### outline-regexp: "\\(> \\)?### [*]+" ***
-> ### End: ***
-> quit('no')
