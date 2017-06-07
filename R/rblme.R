@@ -46,11 +46,11 @@
 ##'
 ##' ## tune h to get 0.8% acceptance
 ##' hopt <- tune.h(effort~Type + (1|Subject), data = ergoStool,
-##'                acc.rate = 0.008, n.sim.HJ = 500, grid.h = seq(0.3, 0.7, len = 10),
+##'                acc.rate = 0.01, n.sim.HJ = 200, grid.h = seq(0.3, 0.7, len = 4),
 ##'                prior = list(beta.sd = 10, s2.scale = 5), n.cores = 1)
 ##'
 ##' ## draw posterior samples with hopt.
-##' abc.tmp <- rblme(nabc = 1e+5, h.obj = hopt,
+##' abc.tmp <- rblme(nabc = 1e+4, h.obj = hopt,
 ##'                  n.cores = 1)
 ##'
 ##' # process ABC samples
