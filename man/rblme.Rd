@@ -34,8 +34,8 @@ require(lme4)
 fm1 <- lmer(effort~Type + (1| Subject), data = ergoStool)
 
 ## tune h to get 0.8\% acceptance
-hopt <- tune.h(effort~Type + (1|Subject), data = ergoStool,
-               acc.rate = 0.01, n.sim.HJ = 200, grid.h = seq(0.3, 0.7, len = 4),
+hopt <- tune.h(effort~Type + (1|Subject), data = ergoStool, n.samp = 1e+4,
+               acc.rate = 0.01, n.sim.HJ = 100, grid.h = seq(0.3, 0.7, len = 3),
                prior = list(beta.sd = 10, s2.scale = 5), n.cores = 1)
 
 ## draw posterior samples with hopt.

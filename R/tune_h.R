@@ -36,13 +36,6 @@
 ##' Richardson A. M. & Welsh A. H. (1995) Robust restricted maximum likelihood in mixed linear models. \emph{Biometrics} \bold{51}, 1429-1439.
 ##'
 ##' @seealso \code{\link[robustBLME]{rblme}}, \code{\link[robustBLME]{ergoStool}}.
-##' @examples
-##' ## tune h to get 0.8% acceptance
-##' hopt <- tune.h(effort~Type + (1|Subject), data = ergoStool,
-##'                acc.rate = 0.01, n.sim.HJ = 200, grid.h = seq(0.4, 0.7, len = 4),
-##'                prior = list(beta.sd = 10, s2.scale = 5), n.cores = 1)
-##' str(hopt)
-##'
 
 #' @export
 tune.h <- function(formula, data, ..., n.samp = 1e+5, n.sim.HJ = 500, acc.rate, grid.h,
